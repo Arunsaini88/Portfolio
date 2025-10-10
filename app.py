@@ -66,13 +66,34 @@ portfolio_data = {
             'description': 'Enterprise-grade desktop application for cluster management with real-time monitoring',
             'highlights': [
                 'Cluster flow graph visualization and YAML validation tools for DevOps optimization'
+            ],
+            'demo': 'https://github.com/qappalabs/orchetrix/releases'
+        },
+        {
+            'name': 'Celebrity Booking Platform',
+            'tech': 'Django Oscar, Razorpay, MySQL',
+            'description': 'Specialized platform connecting users with celebrities for events, advertisements, receptions, and promotional activities',
+            'highlights': [
+                'Celebrity profile management with availability and pricing system',
+                'Integrated Razorpay payment gateway for secure booking transactions',
+                'Cash on Delivery (COD) payment option for flexible payment methods',
+                'Booking management system for events, ads, receptions, and appearances',
+                'User-friendly interface for browsing and booking celebrities',
+                'Customized Django Oscar framework tailored for service-based bookings'
             ]
         },
         {
-            'name': 'Celebrity Booking E-Commerce Platform',
-            'tech': 'Django, MySQL',
-            'description': 'Customized Django Oscar framework with secure payment integration and booking management',
-            'highlights': []
+            'name': 'Django Oscar E-Commerce Platform',
+            'tech': 'Django Oscar, Razorpay, MySQL',
+            'description': 'Fully customized Django Oscar e-commerce platform with integrated payment solutions for online product sales',
+            'highlights': [
+                'Complete e-commerce functionality with product catalog and inventory management',
+                'Integrated Razorpay payment gateway for secure online transactions',
+                'Cash on Delivery (COD) payment option for customer convenience',
+                'User-friendly shopping experience with responsive design',
+                'Secure payment processing with order tracking and management system',
+                'Customized Django Oscar framework optimized for product-based commerce'
+            ]
         },
         {
             'name': 'Job Portal Web Application',

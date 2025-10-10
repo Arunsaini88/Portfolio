@@ -81,11 +81,130 @@ skillTags.forEach(tag => {
     skillObserver.observe(tag);
 });
 
+// Create custom dialog box
+function showDialog(message, type = 'success') {
+    // Remove any existing dialog
+    const existingDialog = document.querySelector('.custom-dialog');
+    if (existingDialog) {
+        existingDialog.remove();
+    }
+
+    // Create dialog
+    const dialog = document.createElement('div');
+    dialog.className = `custom-dialog ${type}`;
+    dialog.innerHTML = `
+        <div class="dialog-content">
+            <div class="dialog-icon">
+                ${type === 'success' ? '<i class="fas fa-check-circle"></i>' : '<i class="fas fa-exclamation-circle"></i>'}
+            </div>
+            <p class="dialog-message">${message}</p>
+            <button class="dialog-close-btn">OK</button>
+        </div>
+    `;
+    document.body.appendChild(dialog);
+
+    // Add styles
+    if (!document.getElementById('dialog-styles')) {
+        const style = document.createElement('style');
+        style.id = 'dialog-styles';
+        style.textContent = `
+            .custom-dialog {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                z-index: 10000;
+                animation: fadeIn 0.3s ease;
+            }
+            .dialog-content {
+                background: #0a192f;
+                border: 2px solid #64ffda;
+                border-radius: 10px;
+                padding: 30px;
+                max-width: 400px;
+                width: 90%;
+                text-align: center;
+                animation: slideUp 0.3s ease;
+            }
+            .dialog-icon {
+                font-size: 48px;
+                margin-bottom: 20px;
+            }
+            .custom-dialog.success .dialog-icon {
+                color: #64ffda;
+            }
+            .custom-dialog.error .dialog-icon {
+                color: #ff6b6b;
+            }
+            .dialog-message {
+                color: #8892b0;
+                font-size: 16px;
+                margin-bottom: 20px;
+                line-height: 1.6;
+            }
+            .dialog-close-btn {
+                background: #64ffda;
+                color: #0a192f;
+                border: none;
+                padding: 10px 30px;
+                border-radius: 5px;
+                font-size: 16px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .dialog-close-btn:hover {
+                background: #52e4c2;
+                transform: translateY(-2px);
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+            @keyframes slideUp {
+                from { transform: translateY(50px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    // Close dialog
+    const closeBtn = dialog.querySelector('.dialog-close-btn');
+    closeBtn.addEventListener('click', () => {
+        dialog.style.animation = 'fadeOut 0.3s ease';
+        setTimeout(() => dialog.remove(), 300);
+    });
+
+    // Close on background click
+    dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) {
+            dialog.style.animation = 'fadeOut 0.3s ease';
+            setTimeout(() => dialog.remove(), 300);
+        }
+    });
+}
+
 // Contact Form Handling
 const contactForm = document.getElementById('contactForm');
 if (contactForm) {
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalBtnText = submitBtn.innerHTML;
+
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
+
+        // Disable button to prevent double submission
+        if (submitBtn.disabled) {
+            return;
+        }
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
         const formData = {
             name: contactForm.name.value,
@@ -105,11 +224,17 @@ if (contactForm) {
             const data = await response.json();
 
             if (data.status === 'success') {
-                alert('Thank you for your message! I will get back to you soon.');
+                showDialog('Thank you for your message! I will get back to you soon.', 'success');
                 contactForm.reset();
+            } else {
+                showDialog(data.message || 'Sorry, there was an error sending your message. Please try emailing directly.', 'error');
             }
         } catch (error) {
-            alert('Sorry, there was an error sending your message. Please try emailing directly.');
+            showDialog('Sorry, there was an error sending your message. Please try emailing directly.', 'error');
+        } finally {
+            // Re-enable button after response
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnText;
         }
     });
 }

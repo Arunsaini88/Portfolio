@@ -56,7 +56,7 @@ portfolio_data = {
                 'Collaborating directly with Team Lead and Company Owner on feature planning, reporting, and technical decisions.',
                 'Contributing towards dashboard-ready datasets to support strategy development and performance analysis.'
             ]
-        }
+        },
         {
             'company': 'QappaLabs',
             'role': 'Software Developer',

@@ -36,19 +36,31 @@ portfolio_data = {
     'skills': {
         'Programming': ['Python (Advanced)', 'JavaScript', 'Java', 'C/C++'],
         'Backend': ['Django', 'Flask', 'FastAPI', 'RESTful APIs'],
+        'Frontend': ['React.js', 'HTML5', 'CSS3', 'Responsive Design'],
+        'AI/ML': ['PyTorch', 'TensorFlow', 'LangChain', 'Vector databases'],
+        'Databases': ['MySQL', 'SQLite', 'Database Optimization'],
         'Desktop': ['PyQt6', 'GUI Development', 'PyInstaller'],
         'Cloud/DevOps': ['AWS (EC2, Lambda)', 'Docker', 'Kubernetes APIs'],
-        'Databases': ['MySQL', 'SQLite', 'Database Optimization'],
-        'AI/ML': ['PyTorch', 'TensorFlow', 'LangChain', 'Vector databases'],
-        'Frontend': ['React.js', 'HTML5', 'CSS3', 'Responsive Design'],
         'Tools': ['Git', 'GitHub', 'API Integration', 'AI Tools (Claude, GPT)']
     },
 
     'experience': [
         {
+            'company': 'CSV Trade Trail Private Limited',
+            'role': 'Software Developer',
+            'period': 'dec 2025 - Present',
+            'achievements': [
+                'Working on trading and financial data processing systems, including pivot creation, occurrence analysis, and strategy-oriented data pipelines.',
+                'Developing and maintaining Python-based backend scripts and services for market data handling and analysis.',
+                'Designing structured data flows for high-frequency trading logs and historical datasets.',
+                'Collaborating directly with Team Lead and Company Owner on feature planning, reporting, and technical decisions.',
+                'Contributing towards dashboard-ready datasets to support strategy development and performance analysis.'
+            ]
+        }
+        {
             'company': 'QappaLabs',
             'role': 'Software Developer',
-            'period': 'Sep 2024 - Present',
+            'period': 'dec 2024 - dec 2025',
             'achievements': [
                 'Leading development of enterprise Kubernetes GUI management application using Python and PyQt6',
                 'Integrating Kubernetes APIs for full cluster management, deployment, and resource monitoring',

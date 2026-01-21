@@ -29,9 +29,9 @@ portfolio_data = {
     'email': 'as9389872806@gmail.com',
     'linkedin': 'https://www.linkedin.com/in/arun-saini-22392322b/',
     'github': 'https://github.com/Arunsaini88',
-    'location': 'Dehrsdun, India',
+    'location': 'New Delhi, India',
 
-    'summary': 'Innovative Python Developer with 1 year of professional experience building enterprise-grade applications. Currently leading development of comprehensive Kubernetes management GUI application with advanced visualization features. Proven ability to work independently on complex projects while transitioning into AI/ML engineering.',
+    'summary': 'Innovative Python Developer with professional experience building enterprise-grade applications. Currently leading development of comprehensive Kubernetes management GUI application with advanced visualization features. Proven ability to work independently on complex projects while transitioning into AI/ML engineering.',
 
     'skills': {
         'Programming': ['Python (Advanced)', 'JavaScript', 'Java', 'C/C++'],
@@ -166,17 +166,17 @@ def contact():
                 reply_to=email
             )
             msg.body = f"""
-New contact form submission from your portfolio:
-
-Name: {name}
-Email: {email}
-
-Message:
-{message}
-
----
-Sent from your portfolio website
-"""
+                            New contact form submission from your portfolio:
+                            
+                            Name: {name}
+                            Email: {email}
+                            
+                            Message:
+                            {message}
+                            
+                            ---
+                            Sent from your portfolio website
+                        """
             mail.send(msg)
 
             # Confirmation email to sender
@@ -185,17 +185,17 @@ Sent from your portfolio website
                 recipients=[email]
             )
             confirmation.body = f"""
-Hi {name},
-
-Thank you for reaching out! I've received your message and will get back to you as soon as possible.
-
-Best regards,
-Arun Saini
-Python Developer | AI/ML Engineer
-
----
-This is an automated confirmation email.
-"""
+                                    Hi {name},
+                                    
+                                    Thank you for reaching out! I've received your message and will get back to you as soon as possible.
+                                    
+                                    Best regards,
+                                    Arun Saini
+                                    Python Developer | AI/ML Engineer
+                                    
+                                    ---
+                                    This is an automated confirmation email.
+                                """
             mail.send(confirmation)
 
             return jsonify({'status': 'success', 'message': 'Message sent successfully!'})

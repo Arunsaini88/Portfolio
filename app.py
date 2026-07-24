@@ -17,109 +17,102 @@ app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS', 'True') == 'True'
 app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
 app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
 app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', os.getenv('MAIL_USERNAME'))
-app.config['MAIL_RECIPIENT'] = os.getenv('MAIL_RECIPIENT', 'as9389872806@gmail.com')
+app.config['MAIL_RECIPIENT'] = os.getenv('MAIL_RECIPIENT', os.getenv('MAIL_USERNAME'))
 
 mail = Mail(app)
-    
+
 # Portfolio data
 portfolio_data = {
     'name': 'ARUN SAINI',
-    'title': 'Python Developer | AI/ML Engineer | Backend Developer',
-    'phone': '+919389872806',
-    'email': 'as9389872806@gmail.com',
+    'title': 'Python Backend & AI/ML Engineer',
+    'phone': os.getenv('PORTFOLIO_PHONE', ''),
+    'email': os.getenv('PORTFOLIO_EMAIL', ''),
     'linkedin': 'https://www.linkedin.com/in/arun-saini-22392322b/',
     'github': 'https://github.com/Arunsaini88',
     'location': 'New Delhi, India',
 
-    'summary': 'Innovative Python Developer with professional experience building enterprise-grade applications. Currently leading development of comprehensive Kubernetes management GUI application with advanced visualization features. Proven ability to work independently on complex projects while transitioning into AI/ML engineering.',
+    'summary': 'Python backend and AI/ML engineer building large-scale financial data pipelines and enterprise tooling for ~19 months. Currently developing options backtesting infrastructure at a fast-moving trading startup, with a growing focus on applied AI/ML — RAG systems, agents, and LLM-backed tooling.',
 
     'skills': {
         'Programming': ['Python (Advanced)', 'JavaScript', 'Java', 'C/C++'],
         'Backend': ['Django', 'Flask', 'FastAPI', 'RESTful APIs'],
-        'Frontend': ['React.js', 'HTML5', 'CSS3', 'Responsive Design'],
-        'AI/ML': ['PyTorch', 'TensorFlow', 'LangChain', 'Vector databases'],
-        'Databases': ['MySQL', 'SQLite', 'Database Optimization'],
-        'Desktop': ['PyQt6', 'GUI Development', 'PyInstaller'],
-        'Cloud/DevOps': ['AWS (EC2, Lambda)', 'Docker', 'Kubernetes APIs'],
-        'Tools': ['Git', 'GitHub', 'API Integration', 'AI Tools (Claude, GPT)']
+        'AI/ML': ['LangChain', 'Gemini', 'PyTorch', 'Vector databases'],
+        'Frontend': ['React.js', 'React Native', 'HTML5/CSS3'],
+        'Databases': ['PostgreSQL/Neon', 'MySQL', 'SQLite'],
+        'Cloud/DevOps': ['AWS (EC2, Lambda)', 'Docker', 'Kubernetes APIs', 'Railway', 'Vercel'],
     },
 
     'experience': [
         {
             'company': 'CSV Trade Trail Private Limited',
             'role': 'Software Developer',
-            'period': 'dec 2025 - Present',
+            'period': 'Dec 2025 - Present',
             'achievements': [
-                'Working on trading and financial data processing systems, including pivot creation, occurrence analysis, and strategy-oriented data pipelines.',
-                'Developing and maintaining Python-based backend scripts and services for market data handling and analysis.',
-                'Designing structured data flows for high-frequency trading logs and historical datasets.',
-                'Collaborating directly with Team Lead and Company Owner on feature planning, reporting, and technical decisions.',
-                'Contributing towards dashboard-ready datasets to support strategy development and performance analysis.'
+                'Building large-scale options backtesting pipelines — pivot creation, occurrence analysis, and strategy-oriented data flows.',
+                'Developing Python backend services for market data handling, high-frequency trading logs, and historical datasets.',
+                'Working directly with the team lead and founder on feature planning and technical decisions in a startup environment.',
+                'Producing dashboard-ready datasets to support strategy development and performance analysis.',
             ]
         },
         {
             'company': 'QappaLabs',
             'role': 'Software Developer',
-            'period': 'dec 2024 - dec 2025',
+            'period': 'Jan 2025 - Dec 2025',
             'achievements': [
-                'Leading development of enterprise Kubernetes GUI management application using Python and PyQt6',
-                'Integrating Kubernetes APIs for full cluster management, deployment, and resource monitoring',
-                'Building advanced features including cluster flow visualization and YAML comparison tools',
-                'Managing complete project lifecycle independently from conception to cross-platform deployment',
-                'Reduced manual kubectl operations by 80% through intuitive GUI design'
+                'Led development of Orchetrix, an open-source Kubernetes management GUI, using Python and PyQt6.',
+                'Integrated Kubernetes APIs for full cluster management, deployment, and resource monitoring.',
+                'Built cluster flow visualization and YAML comparison tooling — ~98% page-load reduction, ~70% faster cluster connect.',
+                'Owned the project independently end-to-end, from design through cross-platform deployment — 255+ commits.',
             ]
         }
     ],
 
     'projects': [
         {
-            'name': 'Kubernetes Management GUI Application',
+            'name': 'Orchetrix',
             'tech': 'Python, PyQt6, Kubernetes APIs',
-            'description': 'Enterprise-grade desktop application for cluster management with real-time monitoring',
+            'description': 'Open-source Kubernetes management GUI with cluster flow visualization and YAML diffing.',
             'highlights': [
-                'Cluster flow graph visualization and YAML validation tools for DevOps optimization'
+                '255+ commits, ~98% page-load reduction, ~70% faster cluster connect',
             ],
-            'demo': 'https://github.com/qappalabs/orchetrix/releases'
+            'repo': 'https://github.com/qappalabs/orchetrix',
         },
         {
-            'name': 'Celebrity Booking Platform',
-            'tech': 'Django Oscar, Razorpay, MySQL',
-            'description': 'Specialized platform connecting users with celebrities for events, advertisements, receptions, and promotional activities',
-            'highlights': [
-                'Celebrity profile management with availability and pricing system',
-                'Integrated Razorpay payment gateway for secure booking transactions',
-                'Cash on Delivery (COD) payment option for flexible payment methods',
-                'Booking management system for events, ads, receptions, and appearances',
-                'User-friendly interface for browsing and booking celebrities',
-                'Customized Django Oscar framework tailored for service-based bookings'
-            ]
-        },
-        {
-            'name': 'Django Oscar E-Commerce Platform',
-            'tech': 'Django Oscar, Razorpay, MySQL',
-            'description': 'Fully customized Django Oscar e-commerce platform with integrated payment solutions for online product sales',
-            'highlights': [
-                'Complete e-commerce functionality with product catalog and inventory management',
-                'Integrated Razorpay payment gateway for secure online transactions',
-                'Cash on Delivery (COD) payment option for customer convenience',
-                'User-friendly shopping experience with responsive design',
-                'Secure payment processing with order tracking and management system',
-                'Customized Django Oscar framework optimized for product-based commerce'
-            ]
-        },
-        {
-            'name': 'Job Portal Web Application',
-            'tech': 'Django, JavaScript',
-            'description': 'Full-stack portal with dual interfaces, resume upload, and application tracking systems',
-            'highlights': []
-        },
-        {
-            'name': 'Trip Tracking Application',
-            'tech': 'Django',
-            'description': 'Personal trip management with image upload and geolocation features',
+            'name': 'RAG Monitoring Assistant',
+            'tech': 'Python, LangChain',
+            'description': 'Retrieval-augmented assistant for monitoring workflows — grounds LLM responses in live system context instead of static prompts.',
             'highlights': [],
-            'demo': '#'
-        }
+            'repo': 'https://github.com/Arunsaini88/RAG_Monitoring_Assistant',
+        },
+        {
+            'name': 'Cold Email AI',
+            'tech': 'React, FastAPI, Gemini',
+            'description': "SaaS tool that generates personalized cold outreach emails from a prospect's profile and context using an LLM pipeline.",
+            'highlights': [],
+            'repo': 'https://github.com/Arunsaini88/Cold_Email_AI_Frontend',
+            'demo': 'https://cold-email-ai-frontend.vercel.app',
+        },
+        {
+            'name': 'AI Social Media Manager',
+            'tech': 'Python, LLM Agent',
+            'description': 'Agent that plans and drafts social content on a schedule, reducing manual content-calendar work.',
+            'highlights': [],
+            'repo': 'https://github.com/Arunsaini88/AI_Social_Media_Manager_Agent',
+        },
+        {
+            'name': 'Django E-Commerce Platform',
+            'tech': 'Django Oscar, Razorpay, MySQL',
+            'description': 'Fully customized Django Oscar storefront with product catalog, inventory, and integrated Razorpay + COD checkout.',
+            'highlights': [],
+            'repo': 'https://github.com/Arunsaini88/Django_E-com',
+        },
+        {
+            'name': 'Trip Tracking App',
+            'tech': 'Django',
+            'description': 'Personal trip management app with image upload and geolocation tagging for each stop.',
+            'highlights': [],
+            'repo': 'https://github.com/Arunsaini88/Trip-App',
+        },
     ],
 
     'education': [
@@ -141,9 +134,11 @@ portfolio_data = {
     ]
 }
 
+
 @app.route('/')
 def index():
     return render_template('index.html', data=portfolio_data)
+
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
@@ -153,83 +148,82 @@ def contact():
         email = data.get('email', '')
         message = data.get('message', '')
 
-        # Validate input
         if not name or not email or not message:
             return jsonify({'status': 'error', 'message': 'All fields are required'}), 400
 
-        # Send email if mail is configured
         if app.config['MAIL_USERNAME'] and app.config['MAIL_PASSWORD']:
-            # Email to you (portfolio owner)
             msg = Message(
                 subject=f'Portfolio Contact: Message from {name}',
                 recipients=[app.config['MAIL_RECIPIENT']],
                 reply_to=email
             )
             msg.body = f"""
-                            New contact form submission from your portfolio:
-                            
-                            Name: {name}
-                            Email: {email}
-                            
-                            Message:
-                            {message}
-                            
-                            ---
-                            Sent from your portfolio website
-                        """
+New contact form submission from your portfolio:
+
+Name: {name}
+Email: {email}
+
+Message:
+{message}
+
+---
+Sent from your portfolio website
+"""
             mail.send(msg)
 
-            # Confirmation email to sender
             confirmation = Message(
                 subject='Thanks for contacting me!',
                 recipients=[email]
             )
             confirmation.body = f"""
-                                    Hi {name},
-                                    
-                                    Thank you for reaching out! I've received your message and will get back to you as soon as possible.
-                                    
-                                    Best regards,
-                                    Arun Saini
-                                    Python Developer | AI/ML Engineer
-                                    
-                                    ---
-                                    This is an automated confirmation email.
-                                """
+Hi {name},
+
+Thank you for reaching out! I've received your message and will get back to you as soon as possible.
+
+Best regards,
+Arun Saini
+Python Backend & AI/ML Engineer
+
+---
+This is an automated confirmation email.
+"""
             mail.send(confirmation)
 
             return jsonify({'status': 'success', 'message': 'Message sent successfully!'})
         else:
-            # If email not configured, just log it (in production you might want to save to database)
             print(f"Contact form submission - Name: {name}, Email: {email}, Message: {message}")
             return jsonify({'status': 'success', 'message': 'Message received! (Email not configured)'}), 200
 
     except Exception as e:
         print(f"Error sending email: {str(e)}")
         return jsonify({'status': 'error', 'message': 'Failed to send message. Please try again later.'}), 500
-    
+
+
 @app.route('/download-resume')
 def download_resume():
     """Route to download resume (PDF or DOCX)"""
     resume = 'ARUN_SAINI'
-    # Try PDF first, then DOCX
     for ext in ['.pdf', '.docx']:
         resume_path = os.path.join(app.root_path, 'static', resume + ext)
         if os.path.exists(resume_path):
             return send_file(resume_path, as_attachment=True, download_name=resume + ext)
     return jsonify({'error': 'Resume not found'}), 404
 
+
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
+
 
 @app.errorhandler(500)
 def internal_server_error(e):
     return render_template('500.html'), 500
 
+
 @app.context_processor
 def inject_now():
     return {'now': datetime.now(UTC), 'year': datetime.now().year}
+
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)

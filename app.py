@@ -75,7 +75,7 @@ portfolio_data = {
             'highlights': [
                 '255+ commits, ~98% page-load reduction, ~70% faster cluster connect',
             ],
-            'repo': 'https://github.com/qappalabs/orchetrix',
+            'repo': 'https://github.com/qappalabs/orchetrix/releases',
         },
         {
             'name': 'RAG Monitoring Assistant',

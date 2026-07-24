@@ -75,7 +75,7 @@ portfolio_data = {
             'highlights': [
                 '255+ commits, ~98% page-load reduction, ~70% faster cluster connect',
             ],
-            'repo': 'https://github.com/qappalabs/orchetrix',
+            'repo': 'https://github.com/qappalabs/orchetrix/releases',
         },
         {
             'name': 'RAG Monitoring Assistant',
@@ -158,17 +158,17 @@ def contact():
                 reply_to=email
             )
             msg.body = f"""
-New contact form submission from your portfolio:
+                            New contact form submission from your portfolio:
 
-Name: {name}
-Email: {email}
+                            Name: {name}
+                            Email: {email}
 
-Message:
-{message}
+                            Message:
+                            {message}
 
----
-Sent from your portfolio website
-"""
+                            ---
+                            Sent from your portfolio website
+                        """
             mail.send(msg)
 
             confirmation = Message(
@@ -176,17 +176,17 @@ Sent from your portfolio website
                 recipients=[email]
             )
             confirmation.body = f"""
-Hi {name},
+                                    Hi {name},
 
-Thank you for reaching out! I've received your message and will get back to you as soon as possible.
+                                    Thank you for reaching out! I've received your message and will get back to you as soon as possible.
 
-Best regards,
-Arun Saini
-Python Backend & AI/ML Engineer
+                                    Best regards,
+                                    Arun Saini
+                                    Python Backend & AI/ML Engineer
 
----
-This is an automated confirmation email.
-"""
+                                    ---
+                                    This is an automated confirmation email.
+                                """
             mail.send(confirmation)
 
             return jsonify({'status': 'success', 'message': 'Message sent successfully!'})

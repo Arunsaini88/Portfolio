@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="AS">
+  <rect width="64" height="64" rx="4" fill="#EDEFE9"/>
+  <rect x="4" y="4" width="56" height="56" rx="2" fill="#E3E6DD" stroke="#14232B" stroke-width="3"/>
+  <path d="M12 46H52" stroke="#2F6F5E" stroke-width="4" stroke-linecap="square"/>
+  <circle cx="50" cy="14" r="5" fill="#2F6F5E"/>
+  <text
+    x="32"
+    y="40"
+    text-anchor="middle"
+    fill="#14232B"
+    font-family="Space Grotesk, Arial, sans-serif"
+    font-size="25"
+    font-weight="700"
+    letter-spacing="-1"
+  >AS</text>
+</svg>

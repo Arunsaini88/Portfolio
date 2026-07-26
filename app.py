@@ -1,7 +1,8 @@
 from flask import Flask, render_template, request, jsonify, send_file
 from flask_mail import Mail, Message
 import os
-from datetime import datetime, UTC
+import re
+from datetime import datetime, UTC, timedelta
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -9,6 +10,7 @@ load_dotenv()
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = timedelta(days=30)
 
 # Email configuration
 app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER', 'smtp.gmail.com')
@@ -20,6 +22,16 @@ app.config['MAIL_DEFAULT_SENDER'] = os.getenv('MAIL_DEFAULT_SENDER', os.getenv('
 app.config['MAIL_RECIPIENT'] = os.getenv('MAIL_RECIPIENT', os.getenv('MAIL_USERNAME'))
 
 mail = Mail(app)
+EMAIL_PATTERN = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
+
+
+@app.after_request
+def add_cache_headers(response):
+    if request.path.startswith('/static/'):
+        response.cache_control.public = True
+        response.cache_control.max_age = 60 * 60 * 24 * 30
+        response.cache_control.immutable = True
+    return response
 
 # Portfolio data
 portfolio_data = {
@@ -142,16 +154,28 @@ def index():
 
 @app.route('/api/contact', methods=['POST'])
 def contact():
+    name = ''
+    email = ''
     try:
-        data = request.json
-        name = data.get('name', '')
-        email = data.get('email', '')
-        message = data.get('message', '')
+        data = request.get_json(silent=True) or {}
+        name = data.get('name', '').strip()
+        email = data.get('email', '').strip()
+        message = data.get('message', '').strip()
 
         if not name or not email or not message:
             return jsonify({'status': 'error', 'message': 'All fields are required'}), 400
 
-        if app.config['MAIL_USERNAME'] and app.config['MAIL_PASSWORD']:
+        if not EMAIL_PATTERN.match(email):
+            return jsonify({'status': 'error', 'message': 'Please enter a valid email address'}), 400
+
+        mail_ready = all([
+            app.config['MAIL_USERNAME'],
+            app.config['MAIL_PASSWORD'],
+            app.config['MAIL_DEFAULT_SENDER'],
+            app.config['MAIL_RECIPIENT'],
+        ])
+
+        if mail_ready:
             msg = Message(
                 subject=f'Portfolio Contact: Message from {name}',
                 recipients=[app.config['MAIL_RECIPIENT']],
@@ -195,8 +219,11 @@ def contact():
             return jsonify({'status': 'success', 'message': 'Message received! (Email not configured)'}), 200
 
     except Exception as e:
-        print(f"Error sending email: {str(e)}")
-        return jsonify({'status': 'error', 'message': 'Failed to send message. Please try again later.'}), 500
+        print(f"Contact form error - Name: {name}, Email: {email}, Error: {str(e)}")
+        return jsonify({
+            'status': 'error',
+            'message': 'Email service is not available right now. Please email me directly.'
+        }), 503
 
 
 @app.route('/download-resume')

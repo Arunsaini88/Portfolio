@@ -140,6 +140,10 @@ nav .container{display:flex; justify-content:space-between; align-items:center; 
 /* ---- section shell ---- */
 section{padding:76px 0;}
 section:not(.hero){border-top:1px solid var(--line);}
+section:not(.hero){
+  content-visibility:auto;
+  contain-intrinsic-size:1px 720px;
+}
 .section-head{display:flex; align-items:baseline; gap:14px; margin-bottom:44px;}
 .section-num{font-family:'IBM Plex Mono',monospace; color:var(--gain); font-size:13px;}
 .section-title{font-size:28px;}

@@ -38,18 +38,26 @@ contactForm?.addEventListener('submit', async function (e) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
     });
-    const result = await res.json();
+    const isJson = res.headers.get('content-type')?.includes('application/json');
+    const result = isJson ? await res.json() : { message: 'Server returned an unexpected response' };
 
     if (res.ok && result.status === 'success') {
       btn.innerHTML = '<i class="fas fa-check"></i> Sent';
-      if (formStatus) formStatus.textContent = '// message sent successfully';
+      if (formStatus) formStatus.textContent = '// ' + result.message;
       this.reset();
     } else {
       throw new Error(result.message || 'Failed to send');
     }
   } catch (err) {
-    btn.innerHTML = '<i class="fas fa-triangle-exclamation"></i> Failed — try again';
-    if (formStatus) formStatus.textContent = '// ' + err.message;
+    btn.innerHTML = '<i class="fas fa-triangle-exclamation"></i> Failed - email directly';
+    if (formStatus) {
+      const emailLink = document.querySelector('a[href^="mailto:"]')?.href || 'mailto:';
+      const fallback = Object.assign(document.createElement('a'), {
+        href: emailLink,
+        textContent: 'Use email instead'
+      });
+      formStatus.replaceChildren(document.createTextNode('// ' + err.message + ' '), fallback);
+    }
   } finally {
     setTimeout(() => {
       btn.disabled = false;

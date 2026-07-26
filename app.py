@@ -30,7 +30,7 @@ def add_cache_headers(response):
     if request.path.startswith('/static/'):
         response.cache_control.public = True
         response.cache_control.max_age = 60 * 60 * 24 * 30
-        response.cache_control.immutable = True
+        response.cache_control.immutable = True 
     return response
 
 # Portfolio data
